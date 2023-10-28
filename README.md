@@ -1,8 +1,10 @@
-# LearnOpenGL - CLion
-This is a project template for OpenGL development with JetBrains CLion IDE.
-It was created mainly for [LearnOpenGL tutorials](https://learnopengl.com/).
-Includes GLAD and GLFW libraries. Has a simple main.cpp file with ["Hello Window"](https://learnopengl.com/Getting-started/Hello-Window) for testing purposes.
+# Ray-Tracing-OpenGL
+A OpenGL implement of ray tracing running on GPU.
 
-Works on multiple platforms. Tested on:
-- MacOS 10.13.3, CLion 2017.3.3, Xcode toolchain
-- Windows 10, CLion 2017.3.3, MinGW toolchain
+To compile the project, you need to add some extra files:
+
+* Add `glad.c` to your project.
+* Add `glad`, `glfw`, `glm` to include path.
+* Add `opengl32.lib` , `glfw3.lib` to additional dependency.
+
+To learn more details about how to build the compiling environment, you can visit https://learnopengl.com/.
