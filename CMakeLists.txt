@@ -12,6 +12,8 @@ include_directories(glfw/include)
 # Including GLAD
 include_directories(glad/include)
 
+include_directories(/path/to/glm)
+
 set(SOURCE_FILES main.cpp glad/src/glad.c)
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})

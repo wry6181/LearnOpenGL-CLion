@@ -31,7 +31,7 @@ RayTracing::Scene scene;
 
 int main()
 {
-	// ³õÊ¼»¯OpenGL
+	// ï¿½ï¿½Ê¼ï¿½ï¿½OpenGL
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -53,10 +53,10 @@ int main()
 		return -1;
 	}
 
-	// ³õÊ¼»¯×ÅÉ«Æ÷	
+	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½	
 	Shader shader("Shader/Vertex", "Shader/Fragment");
 
-	// ½«µãÉèÎª×ÅÉ«¶ÔÏó
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½
 	float point[] = { 0, 0, 0 };
 
 	GLuint VBO;
@@ -70,7 +70,7 @@ int main()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	// ÉèÖÃ¹âÏß¡¢Æ½Ãæ¡¢ÇòÌåµÄ²ÎÊý£¬²¢°ÑËüÃÇ¼ÓÈë³¡¾°
+	// ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ß¡ï¿½Æ½ï¿½æ¡¢ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¼ï¿½ï¿½ë³¡ï¿½ï¿½
 	scene.addLight(new DirLight(
 		glm::vec3(0.2f, 0.2f, 0.2f),
 		glm::vec3(0.6f, 0.6f, 0.6f),
@@ -158,7 +158,7 @@ int main()
 
 	while (!glfwWindowShouldClose(window))
 	{
-		// ´¦ÀíÊäÈëÐÅÏ¢²¢³õÊ¼»¯»º³å¡¢±ä»»¾ØÕó
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½å¡¢ï¿½ä»»ï¿½ï¿½ï¿½ï¿½
 		processInput(window);
 
 		glClearColor(0.3, 0.3, 0.3, 1.0f);
@@ -168,30 +168,30 @@ int main()
 		view = glm::lookAt(viewPos, viewPos + viewFront, viewUp);
 		projection = glm::perspective(glm::radians(90.0f), (float)SCR_WIDTH / SCR_HEIGHT, 0.1f, 100.0f);
 
-		// ³õÊ¼»¯¹Û²ìÓÒÏòÁ¿
+		// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Û²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		glm::vec3 viewRight = glm::normalize(glm::cross(viewFront, viewUp));
 
-		// ½«µãÉèÖÃÎª»æÖÆ¶ÔÏó
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½
 		shader.use();
 		glBindVertexArray(VAO);
 
-		// Ã¶¾ÙÆÁÄ»ÉÏÃ¿Ò»¸öÏñËØ
+		// Ã¶ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½Ã¿Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		for (unsigned int i = 0; i < SCR_WIDTH; i++)
 		{
 			for (unsigned int j = 0; j < SCR_HEIGHT; j++)
 			{
-				// ½«ÏñËØ×ø±ê·ÖÁ¿Ó³Éäµ½[0, 1]
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½äµ½[0, 1]
 				glm::vec3 pos(float(i) * 2 / SCR_WIDTH - 1.0f, float(j) * 2 / SCR_HEIGHT - 1.0f, 0.0f);
 				shader.setVec2("screenPos", pos.x, pos.y);
 
-				// ¼ÆËãÏñËØÔÚÊÀ½ç×ø±êÖÐµÄÎ»ÖÃ
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½Î»ï¿½ï¿½
 				glm::vec3 globalPos = viewPos + viewFront + pos.x * viewRight * (float(SCR_WIDTH) / SCR_HEIGHT) + pos.y * viewUp;
 
-				// ¼ÆËã³ö¹âÏß²¢½øÐÐ¹âÏß×·×Ù
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß²ï¿½ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½×·ï¿½ï¿½
 				RayTracing::Ray ray(viewPos, globalPos);
 				glm::vec3 color = scene.traceRay(ray);
 
-				// »æÖÆ¸Ã´¦µÄÏñËØ
+				// ï¿½ï¿½ï¿½Æ¸Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				shader.setVec3("vertexColor", color);
 				glDrawArrays(GL_POINTS, 0, 1);
 			}
